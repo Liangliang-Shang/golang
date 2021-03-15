@@ -9,8 +9,10 @@ import (
 )
 
 func main() {
-    fmt.Printf(greet.Now() + " Hello? or ")
-    fmt.Printf(greet.Greet() + "\n")
+    fmt.Println(greet.Now())
+
+    fmt.Print("Hello? or ")
+    fmt.Println(greet.Greet())
 
     fmt.Println(hello.Hello())
     fmt.Println(world.World())

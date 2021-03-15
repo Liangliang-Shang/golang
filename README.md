@@ -203,15 +203,18 @@ import (
 )
 
 func main() {
-    fmt.Printf(greet.Now() + " Hello? or ")
-    fmt.Printf(greet.Greet() + "\n")
+    fmt.Println(greet.Now())
+
+    fmt.Print("Hello? or ")
+    fmt.Println(greet.Greet())
 
     fmt.Println(hello.Hello())
     fmt.Println(world.World())
 }
 
 $ go run src/main/greeting.go
-Now it is 21:06:48. Hello? or Good evening!
+Now it is 21:36:54.
+Hello? or Good evening!
 Hello from Hello() in package hello
 World from World() in package world
 ```
