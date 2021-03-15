@@ -2,7 +2,7 @@
 
 ## env 
 ### go && the basic directory structure
-```
+```bash
 $ go version
 go version go1.13.8 linux/amd64
 
@@ -17,7 +17,7 @@ $ tree /home/lshang/pro/golang
 ```
 
 ### go run/build
-```
+```go
 $ cat src/helloworld/main.go
 package main
 
@@ -48,7 +48,7 @@ Hello World!
 ```
 
 ### go install in $GOBIN
-```
+```go
 $ export GOBIN=/home/lshang/pro/golang/bin
 
 $ go install src/helloworld/main.go
@@ -69,7 +69,7 @@ Hello World!
 ```
 
 ### package/lib/module in $GOPATH
-```
+```go
 $ export GOPATH=/home/lshang/pro/golang
 
 $ tree
@@ -136,7 +136,7 @@ World from World() in package world
 ```
 
 ### diff *.go files in the same package
-```
+```go
 $ export GOPATH=/home/lshang/pro/golang
 
 $ cat src/lib/greet/morning.go
