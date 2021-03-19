@@ -1,7 +1,9 @@
 # The Go programming language
 
 ## env 
+
 ### go && the basic directory structure
+
 ```bash
 $ go version
 go version go1.13.8 linux/amd64
@@ -17,6 +19,7 @@ $ tree /home/lshang/pro/golang
 ```
 
 ### go run/build
+
 ```go
 $ cat src/helloworld/main.go
 package main
@@ -48,6 +51,7 @@ Hello World!
 ```
 
 ### go install in $GOBIN
+
 ```go
 $ export GOBIN=/home/lshang/pro/golang/bin
 
@@ -69,6 +73,7 @@ Hello World!
 ```
 
 ### package/lib/module in $GOPATH
+
 ```go
 $ export GOPATH=/home/lshang/pro/golang
 
@@ -136,6 +141,7 @@ World from World() in package world
 ```
 
 ### diff *.go files in the same package
+
 ```go
 $ export GOPATH=/home/lshang/pro/golang
 
@@ -217,4 +223,77 @@ Now it is 21:36:54.
 Hello? or Good evening!
 Hello from Hello() in package hello
 World from World() in package world
+```
+
+## Variable
+
+### string/int
+
+```
+first_name, last_name, age := "John", "Doe", 35
+```
+
+### []type{}, map[] && built-in
+
+```go
+var int_seq = []int{0, 1, 2, 3, 4, 5}
+var sum int
+for index, value := range int_seq {
+    fmt.Print(index, " -> ", value, " ")
+    sum = sum + value
+    fmt.Println("Sum:", sum)
+}
+
+m := map[string]string{"a": "A", "b": "B"}
+for k, v := range m {
+    fmt.Println(k, "->", v)
+}
+```
+
+## Control flow
+
+### if/else
+
+```Go
+    a := [...]int{-1, 0, 1, 2}
+
+    for _, v := range &a {
+        if v < 0 {
+            fmt.Printf("%2d negative\n", v)
+        } else if v > 0 {
+            if v % 2 == 0 {
+                fmt.Printf("%2d positive and even\n", v)
+            } else {
+                fmt.Printf("%2d positive and odd\n", v)
+            }
+        } else {
+            fmt.Printf("%2d 0\n", v)
+        }
+    }
+
+/*
+ * -1 negative
+ *  0 0
+ *  1 positive and odd
+ *  2 positive and even
+ *
+ */
+```
+
+### switch/case
+
+```Go
+    switch time.Now().Weekday().String() {
+        case "Monday", "Tuesday", "Wednesday", "Thursday", "Friday":
+            fmt.Println("It's time to learn some Go.")
+        default:
+            fmt.Println("It's weekend, time to rest!")
+    }
+
+    fmt.Println(time.Now().Weekday().String())
+/*
+ * It's time to learn some Go.
+ * Friday
+ *
+ */
 ```
