@@ -1,6 +1,8 @@
 ## DataType
 
-### map
+### map - implements a hash table
+
+    * a =nil map
 
 ```Go
 var m map[string]float64        // nil map of string-float64 pairs
@@ -19,9 +21,34 @@ m["pi"] = 3.14159               // panic: assignment to entry in nil map
 >
 >       m = make(map[string]int)
 >
+> Q: map and slice are the same reference types, why can we append new elements
+>    to nil slice?
+>
+> A: nil map doesn't point to an initialized map. Assigning value won't re-
+>    allocate point address. The append function appends the elements x to
+>    the end of the slice s, If the backing array of s is too small to fit all
+>    the given values a bigger array will be allocated. The returned slice will
+>    point to the newly allocated array.
+
+    * make a map or refer to a map literal
 
 ```Go
-m := make(map[string]float64)           // empty map
+// make an empty map 
+//
+//      m := make(map[string]float64)
+//
+// or even with a pre-allocated cap
+//
+//      m := make(map[string]float64, 10)
+//
+//  or refer to a map literal
+//
+//      m := map[string]float64 {
+//          "e": 2.71828,
+//          "pi": 3.14159,              // the last , is required!!!
+//      }
+//
+m := map[string]float64{}               // m := make(map[string]float64)
 m["pi"] = 3.14                          // add a new key-value pair
 m["pi"] = 3.1415926                     // update value
 v := m["pi"]                            // get value
@@ -37,140 +64,4 @@ fmt.Println(m)                          // print map: "map[]"
 for key, val := range m {               // order not specified
     fmt.Println(key, val)
 }
-```
-
-```Go
-m2 := make(map[string]float64, 100)     // preallocate 100 cap
-m3 := map[string]float64 {              // map literal
-    "e": 2.71828,
-    "pi": 3.14159,
-}
-```
-
-```
-// variable declaration
-var str string              // with auto-inited zero value, e.g. "", 0, 0.0
-
-// var pi float32 = 3.14    // type could be inferred by the init value 
-var pi = 3.14               // even in shorthand: pi := 3.14
-
-var (
-    name    = "Good morning!"
-    age     = 35
-    height  = 1.60
-) 
-
-// short hand declaration
-first_name, last_name, age := "John", "Doe", 35
-
-var price float32
-```
-
-### []type{}, map[] && built-in
-
-```go
-var int_seq = []int{0, 1, 2, 3, 4, 5}
-var sum int
-for index, value := range int_seq {
-    fmt.Print(index, " -> ", value, " ")
-    sum = sum + value
-    fmt.Println("Sum:", sum)
-}
-
-m := map[string]string{"a": "A", "b": "B"}
-for k, v := range m {
-    fmt.Println(k, "->", v)
-}
-```
-
-## Control flow
-
-### if/else
-
-```Go
-    a := [...]int{-1, 0, 1, 2}
-
-    for _, v := range &a {
-        if v < 0 {
-            fmt.Printf("%2d negative\n", v)
-        } else if v > 0 {
-            if v % 2 == 0 {
-                fmt.Printf("%2d positive and even\n", v)
-            } else {
-                fmt.Printf("%2d positive and odd\n", v)
-            }
-        } else {
-            fmt.Printf("%2d 0\n", v)
-        }
-    }
-
-/*
- * -1 negative
- *  0 0
- *  1 positive and odd
- *  2 positive and even
- *
- */
-```
-
-### switch/case
-
-```Go
-    switch time.Now().Weekday().String() {
-        case "Monday", "Tuesday", "Wednesday", "Thursday", "Friday":
-            fmt.Println("It's time to learn some Go.")
-        default:
-            fmt.Println("It's weekend, time to rest!")
-    }
-
-    fmt.Println(time.Now().Weekday().String())
-
-    letter := "i"
-    switch letter {
-        case "a", "e", "i", "o", "u":
-            fmt.Printf("%s vowel\n", letter)
-        default:
-            fmt.Println("%s not a vowel\n", letter)
-    }
-
-```
-
-## function
-
-### anonymous
-
-```Go
-    // define a function and then call it with ()
-    func(a, b int) {
-        fmt.Printf("Sum of %d and %d: %d\n", a, b, a+b)
-    }(99, 1)
-
-    // define a function and assign it to a variable
-    f := func(a, b int) {
-        fmt.Printf("Sum of %d and %d: %d\n", a, b, a+b)
-    }
-    
-    // call the function with the variable
-    f(99, 1)
-```
-
-### user-defined function type
-
-```Go
-// function type, take two int and return an int
-type add func(a, b int) int
-
-    var f add = func(a, b int) int {
-        return a + b
-    }
-    
-    fmt.Println(f(99, 1))
-```
-
-### Higher-order function
-  * takes one or more functions as arguments
-  * returns a function as its result
-
-```Go
-
 ```
