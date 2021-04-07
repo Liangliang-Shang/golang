@@ -2,7 +2,7 @@
 
 ### map - implements a hash table
 
-    * a =nil map
+* a `nil` map
 
 ```Go
 var m map[string]float64        // nil map of string-float64 pairs
@@ -30,7 +30,7 @@ m["pi"] = 3.14159               // panic: assignment to entry in nil map
 >    the given values a bigger array will be allocated. The returned slice will
 >    point to the newly allocated array.
 
-    * make a map or refer to a map literal
+* make a map or refer to a map literal
 
 ```Go
 // make an empty map 
